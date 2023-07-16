@@ -1,18 +1,21 @@
 terraform-nomad-base
 =========
 
-A brief description of the role goes here.
+Terraform module to deploy nomad jobs. Optionally, this module can deploy csi volumes, consul kv, and consul intentions associated to the job(s).
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_consul"></a> [consul](#requirement\_consul) | >= 2.17.0 |
+| <a name="requirement_nomad"></a> [nomad](#requirement\_nomad) | >= 1.4.20, < 2.0.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_consul"></a> [consul](#provider\_consul) | n/a |
-| <a name="provider_nomad"></a> [nomad](#provider\_nomad) | n/a |
+| <a name="provider_consul"></a> [consul](#provider\_consul) | >= 2.17.0 |
+| <a name="provider_nomad"></a> [nomad](#provider\_nomad) | >= 1.4.20, < 2.0.0 |
 
 ## Modules
 

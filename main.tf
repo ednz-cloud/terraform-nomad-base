@@ -1,4 +1,17 @@
 # main file for terraform-nomad-base
+terraform {
+  required_providers {
+    consul = {
+      source  = "hashicorp/consul"
+      version = ">= 2.17.0"
+    }
+    nomad = {
+      source  = "hashicorp/nomad"
+      version = ">= 1.4.20, < 2.0.0"
+    }
+  }
+}
+
 resource "nomad_job" "this" {
   for_each = var.jobs
   depends_on = [
