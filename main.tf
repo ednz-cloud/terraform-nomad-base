@@ -11,7 +11,6 @@ resource "nomad_job" "this" {
   jobspec          = file(each.value)
   purge_on_destroy = true
   hcl2 {
-    enabled  = true
     allow_fs = true
   }
 }
