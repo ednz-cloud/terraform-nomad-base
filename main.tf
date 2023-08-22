@@ -2,13 +2,13 @@
 resource "nomad_job" "this" {
   for_each = var.jobs
   depends_on = [
-    nomad_external_volume.this,
+    nomad_csi_volume.this,
+    nomad_csi_volume_registration.this,
     consul_key_prefix.this,
-    # consul_config_entry.this
     consul_intention.this
   ]
 
-  jobspec          = file("${each.value}")
+  jobspec          = file(each.value)
   purge_on_destroy = true
   hcl2 {
     enabled  = true
