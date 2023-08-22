@@ -16,12 +16,11 @@ resource "nomad_job" "this" {
   }
 }
 
-resource "nomad_external_volume" "this" {
+resource "nomad_csi_volume" "this" {
   for_each = var.volumes
 
   volume_id    = each.key
   name         = each.key
-  type         = each.value.type
   plugin_id    = each.value.plugin_id
   namespace    = each.value.namespace
   capacity_min = each.value.capacity_min
@@ -34,13 +33,12 @@ resource "nomad_external_volume" "this" {
   secrets    = sensitive(each.value.secrets)
 }
 
-resource "nomad_volume" "this" {
+resource "nomad_csi_volume_registration" "this" {
   for_each = var.nfs_volumes
 
   volume_id   = each.key
   external_id = each.key
   name        = each.key
-  type        = each.value.type
   plugin_id   = each.value.plugin_id
   namespace   = each.value.namespace
   capability {

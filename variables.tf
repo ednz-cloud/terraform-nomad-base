@@ -7,7 +7,6 @@ variable "jobs" {
 
 variable "volumes" {
   type = map(object({
-    type         = string
     plugin_id    = string
     namespace    = string
     capacity_min = string
@@ -22,7 +21,6 @@ variable "volumes" {
 
 variable "nfs_volumes" {
   type = map(object({
-    type       = string
     plugin_id  = string
     namespace  = string
     capability = map(string)
