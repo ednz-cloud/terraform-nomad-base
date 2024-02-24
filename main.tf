@@ -12,6 +12,7 @@ resource "nomad_job" "this" {
   purge_on_destroy = true
   hcl2 {
     allow_fs = true
+    vars = contains(keys(var.jobs_variables), each.key) ? jobs_variables[each.key] : {}
   }
 }
 

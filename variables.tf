@@ -5,6 +5,12 @@ variable "jobs" {
   default     = {}
 }
 
+variable "jobs_variables" {
+  type        = map(object({}))
+  default     = {}
+  description = "Map of object to pass variables to the nomad job(s). Key is the job's name, value is a map of variables and their values"
+}
+
 variable "volumes" {
   type = map(object({
     plugin_id    = string
