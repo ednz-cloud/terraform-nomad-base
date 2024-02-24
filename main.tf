@@ -2,26 +2,24 @@
 resource "nomad_job" "this" {
   for_each = var.jobs
   depends_on = [
-    nomad_external_volume.this,
+    nomad_csi_volume.this,
+    nomad_csi_volume_registration.this,
     consul_key_prefix.this,
-    # consul_config_entry.this
     consul_intention.this
   ]
 
-  jobspec          = file("${each.value}")
+  jobspec          = file(each.value)
   purge_on_destroy = true
   hcl2 {
-    enabled  = true
     allow_fs = true
   }
 }
 
-resource "nomad_external_volume" "this" {
+resource "nomad_csi_volume" "this" {
   for_each = var.volumes
 
   volume_id    = each.key
   name         = each.key
-  type         = each.value.type
   plugin_id    = each.value.plugin_id
   namespace    = each.value.namespace
   capacity_min = each.value.capacity_min
@@ -34,13 +32,12 @@ resource "nomad_external_volume" "this" {
   secrets    = sensitive(each.value.secrets)
 }
 
-resource "nomad_volume" "this" {
+resource "nomad_csi_volume_registration" "this" {
   for_each = var.nfs_volumes
 
   volume_id   = each.key
   external_id = each.key
   name        = each.key
-  type        = each.value.type
   plugin_id   = each.value.plugin_id
   namespace   = each.value.namespace
   capability {
