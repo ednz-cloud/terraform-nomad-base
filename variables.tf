@@ -6,7 +6,7 @@ variable "jobs" {
 }
 
 variable "jobs_variables" {
-  type        = map(object({}))
+  type        = map(map(string))
   default     = {}
   description = "Map of object to pass variables to the nomad job(s). Key is the job's name, value is a map of variables and their values"
 }
