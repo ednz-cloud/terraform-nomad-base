@@ -2,8 +2,13 @@
 
 ### Feat
 
+- **docs**: add description to README
 - **job**: add ability to pass job either as filepath or directly as string
 - configure commitizen
+
+### Fix
+
+- commitizen not allowing its own commits due to wrong bump message
 
 ## v2.1.0 (2024-02-25)
 
