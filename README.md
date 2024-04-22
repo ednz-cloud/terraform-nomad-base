@@ -1,3 +1,7 @@
+# terraform-nomad-base
+
+This module lets you deploy a  (or multiple) fully featured nomad job(s), with potentially CSI volumes, consul intentions, and consul kv entries.
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ### Requirements
 
