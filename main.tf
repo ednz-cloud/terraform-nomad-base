@@ -8,7 +8,7 @@ resource "nomad_job" "this" {
     consul_intention.this
   ]
 
-  jobspec          = file(each.value)
+  jobspec          = try(file(each.value), each.value)
   purge_on_destroy = true
   hcl2 {
     allow_fs = true
